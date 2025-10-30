@@ -1,0 +1,58 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pdf-to-markdown-summarizer"
+version = "0.1.0"
+description = "Summarizes PDF files into markdown format compendiums, assisted by AI."
+readme = "README.md"
+requires-python = ">=3.12"
+license = {file = "LICENSE"}
+authors = [
+    {name = "Reza Shahnazar", email = "reza.shahnazar@gmail.com"},
+]
+keywords = ["pdf", "markdown", "summarizer", "ai", "openai", "gemini"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Text Processing :: Markup",
+]
+dependencies = [
+    "google-genai>=1.47.0",
+    "openai>=2.6.1",
+    "pydantic-settings>=2.11.0",
+    "pypdf[full]>=6.1.3",
+    "python-dotenv>=1.2.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/rezashahnazar/pdf-to-markdown-summarizer"
+Repository = "https://github.com/rezashahnazar/pdf-to-markdown-summarizer"
+Issues = "https://github.com/rezashahnazar/pdf-to-markdown-summarizer/issues"
+
+[project.scripts]
+pdf-to-markdown = "pdf_to_markdown_summarizer.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pdf_to_markdown_summarizer"]
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+    "/.env.example",
+    "/.gitignore",
+    "/.python-version",
+    "/uv.lock",
+    ".gitignore",
+]
